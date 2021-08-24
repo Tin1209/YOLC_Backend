@@ -17,14 +17,22 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
-
+from rest_auth.views import (
+    LoginView, LogoutView, PasswordChangeView,
+    PasswordResetView, PasswordResetConfirmView
+)
+from rest_auth.registration.views import RegisterView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('rest-auth/', include('rest_auth.urls')),
-    path('', include('main.urls')),
-    path('rest-auth/', include('rest_auth.registration.urls'))
+    path('',include('main.urls')),
+    # 로그인 
+    path('rest-auth/login', LoginView.as_view(), name='rest_login'),
+    path('rest-auth/logout', LogoutView.as_view(), name='rest_logout'),
+    path('rest-auth/password/change', PasswordChangeView.as_view(), name='rest_[assword_change'),
+    # 회원가입
+    path('rest-auth/registration', RegisterView.as_view(), name='rest_register'),
+    path('accounts/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
