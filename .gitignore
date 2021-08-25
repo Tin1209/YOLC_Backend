@@ -1,3 +1,5 @@
 Tin
 Tin.pub
-ccpApi/*/__pycache__
+ccpApi/main/__pycache__
+ccpApi/accounts/migrations
+
