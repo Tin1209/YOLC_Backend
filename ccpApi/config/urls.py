@@ -27,12 +27,5 @@ from rest_auth.registration.views import RegisterView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('',include('main.urls')),
-    # 로그인 
-    path('rest-auth/login', LoginView.as_view(), name='rest_login'),
-    path('rest-auth/logout', LogoutView.as_view(), name='rest_logout'),
-    path('rest-auth/password/change', PasswordChangeView.as_view(), name='rest_[assword_change'),
-    # 회원가입
-    path('rest-auth/registration', RegisterView.as_view(), name='rest_register'),
-    path('accounts/', include('allauth.urls')),
+    path('',include('accounts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
