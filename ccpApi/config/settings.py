@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'allauth.socialaccount',
     'main',
+	'accounts',
 ]
 
 SITE_ID = 1
