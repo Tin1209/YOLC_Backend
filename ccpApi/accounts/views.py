@@ -35,7 +35,6 @@ def login(request):
 def signup(request):
     id = request.data.get('username', '')
     pw = request.data.get('password', '')
-    pw_re = request.data.get('password_re', '')
 
     is_exist = User.objects.filter(username=id).exists()
     if is_exist:
