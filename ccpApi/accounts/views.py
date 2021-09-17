@@ -12,22 +12,25 @@ from django.contrib.auth import authenticate
 @api_view(["POST", "GET"])
 @csrf_exempt
 def login(request):
-    if request.method == 'POST':
-        id = request.data.get('username', '')
-        pw = request.data.get('password', '')
-        login_result = authenticate(username=id, password=pw)
+	if request.method == 'POST':
 
-        if login_result:
-            print("로그인 성공!")
-            return JsonResponse({'code': '0000', 'msg': '로그인 성공'}, status=200)
-        else:
-            print("로그인 실패")
-            return JsonResponse({'code': '1001', 'msg': '로그인 실패'}, status=200)
+		id = request.data.get('username', '')
+		pw = request.data.get('password', '')
+		print("id: " + id + "pw: " + pw)
+		login_result = authenticate(username=id, password=pw)
 
-    elif request.method == 'GET':
-        query_set = User.objects.all()
-        serializer = AppAddressesSerializer(query_set, many=True)
-        return JsonResponse(serializer.data, safe=False)
+		if login_result:
+
+			print("로그인 성공!")
+			return JsonResponse({'code': '0000', 'msg': '로그인 성공'}, status=200)
+		else:
+			print("로그인 실패")
+			return JsonResponse({'code': '1001', 'msg': '로그인 실패'}, status=200)
+
+	elif request.method == 'GET':
+		query_set = User.objects.all()
+		serializer = AppAddressesSerializer(query_set, many=True)
+		return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(["POST"])
