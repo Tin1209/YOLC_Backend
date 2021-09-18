@@ -26,7 +26,7 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-18-191-209-53.us-east-2.compute.amazonaws.com', '18.191.209.53']
+ALLOWED_HOSTS = ['localhost','ec2-18-191-209-53.us-east-2.compute.amazonaws.com', '18.191.209.53']
 
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'main',
 	'accounts',
+	'SMSAuthentication',
 ]
 
 REST_FRAMEWORK = {
@@ -125,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
