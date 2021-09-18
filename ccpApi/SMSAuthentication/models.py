@@ -3,7 +3,6 @@ import requests
 from random import randint
 from model_utils.models import TimeStampedModel
 from django.utils import timezone
-import boto3
 import datetime
 import time
 from . import ApiKeys
