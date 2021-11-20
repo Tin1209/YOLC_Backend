@@ -26,7 +26,7 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','ec2-18-191-209-53.us-east-2.compute.amazonaws.com', '18.191.209.53']
+ALLOWED_HOSTS = ['localhost','ec2-18-191-209-53.us-east-2.compute.amazonaws.com', '18.116.171.86']
 
 
 # Application definition
@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'allauth.socialaccount',
     'main',
-	'accounts',
-	'SMSAuthentication',
+    'accounts',
+    'smsAuth',
 ]
 
 REST_FRAMEWORK = {
