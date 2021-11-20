@@ -1,7 +1,7 @@
 from django.db import models
 import requests
 from random import randint
-from model_utils.models import TimeStampedModel
+from django.db import models
 from django.utils import timezone
 import datetime
 import time
@@ -10,17 +10,15 @@ import json
 
 # Create your models here.
 
-class Auth(TimeStampedModel):
+class Auth(models.Model):
 	phone_number = models.CharField(
 			verbose_name="휴대폰 번호",
 			primary_key=True,
 			max_length=11)
-	auth_number = models.IntegerField(verbose_name="인증 번호")
-	
-	
+	auth_number = models.IntegerField(verbose_name="인증 번호")	
 
 	class Meta:
-		db_table="SMSauth"
+		db_table = "smsauth"
 
 	def save(self, *args, **kwargs):
 		print("save")
