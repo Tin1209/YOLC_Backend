@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
         return user 
 
 class User(AbstractBaseUser):
-    username = models.CharField(max_length=100)
+    username = models.CharField(max_length=100,unique=True)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=20)
