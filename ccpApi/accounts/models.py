@@ -36,6 +36,14 @@ class User(AbstractBaseUser):
     phone_number = models.CharField(max_length=20)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    upload_dir = str(name) + '/'
+    
+    img1 = models.FileField(upload_to=upload_dir,blank=True)
+    img2 = models.FileField(upload_to=upload_dir,blank=True)
+    img3 = models.FileField(upload_to=upload_dir,blank=True)
+    img4 = models.FileField(upload_to=upload_dir,blank=True)
+    img5 = models.FileField(upload_to=upload_dir,blank=True)
+    img6 = models.FileField(upload_to=upload_dir,blank=True)
 
     objects = UserManager()
 
@@ -54,5 +62,3 @@ def has_module_perms(self, app_label):
 @property 
 def is_staff(self):
     return self.is_admin
-
-
