@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
-
+import sys
+import os
 # Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self,username, name, address, phone_number, password=None):
@@ -32,26 +33,45 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(max_length=100,unique=True)
     name = models.CharField(max_length=100)
-    address = models.CharField(max_length=200)
+    address = models.CharField(max_length=200,unique=True)
     phone_number = models.CharField(max_length=20)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    upload_dir = str(name) + '/'
+    token = models.CharField(max_length=200,blank=True)
+
+    def upload_dir1(instance, filename):
+        prefix = instance.username
+        return "face/" + prefix + "/image1.jpg"
+    def upload_dir2(instance, filename):
+        prefix = instance.username
+        return "face/" + prefix + "/image2.jpg"
+    def upload_dir3(instance, filename):
+        prefix = instance.username
+        return "face/" + prefix + "/image3.jpg"
+    def upload_dir4(instance, filename):
+        prefix = instance.username
+        return "face/" + prefix + "/image4.jpg"
+    def upload_dir5(instance, filename):
+        prefix = instance.username
+        return "face/" + prefix + "/image5.jpg"
+    def upload_dir6(instance, filename):
+        prefix = instance.username
+        return "face/" + prefix + "/image6.jpg"
+
+
     
-    img1 = models.FileField(upload_to=upload_dir,blank=True)
-    img2 = models.FileField(upload_to=upload_dir,blank=True)
-    img3 = models.FileField(upload_to=upload_dir,blank=True)
-    img4 = models.FileField(upload_to=upload_dir,blank=True)
-    img5 = models.FileField(upload_to=upload_dir,blank=True)
-    img6 = models.FileField(upload_to=upload_dir,blank=True)
+    img1 = models.FileField(upload_to=upload_dir1,blank=True,null=True)
+    img2 = models.FileField(upload_to=upload_dir2,blank=True,null=True)
+    img3 = models.FileField(upload_to=upload_dir3,blank=True,null=True)
+    img4 = models.FileField(upload_to=upload_dir4,blank=True,null=True)
+    img5 = models.FileField(upload_to=upload_dir5,blank=True,null=True)
+    img6 = models.FileField(upload_to=upload_dir6,blank=True,null=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELD = ['name', 'address', 'phone_number']
 
-    def __str__(self):
-        return self.username
 
 def has_perm(self, perm, obj=None):
     return True
